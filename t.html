@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Try Harder, Victoria.</title>
+    <title>Try Harder Victoria</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 30px;
+            margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
@@ -19,13 +19,20 @@
             font-size: 48px;
             font-weight: bold;
             margin-bottom: 20px;
-            display: inline-block;
-            /* position: relative; */
-            /* white-space: nowrap; */
+            display: block; /* Allow text to wrap properly while being block-level */
+            position: relative;
+            white-space: normal; /* Allow text to wrap */
+            overflow: hidden; /* Ensure text is hidden while waiting for new text */
+            padding: 0 30px; /* Add 30px of padding for wrapping space */
+            word-wrap: break-word; /* Ensure text wraps if it's too long */
+            text-align: center; /* Ensures center justification even when wrapping */
+            max-width: 80%; /* Make sure the h1 doesn't stretch too wide */
+            margin-left: auto; /* Ensure it stays centered */
+            margin-right: auto; /* Ensure it stays centered */
         }
         #period {
             display: inline-block;
-            position: relative;
+            position: absolute; /* Period will move independently of text */
             transition: transform 1s;
         }
         #extra-text {
@@ -96,20 +103,22 @@
             return brightness > 128;
         }
 
-        // Function to add extra text and move the period
+        // Function to calculate and adjust the position of the period dynamically
         function addExtraText() {
             const extraText = document.getElementById("extra-text");
             const period = document.getElementById("period");
             const mainText = document.getElementById("main-text");
 
-            // Calculate the width of the "Try harder." text
+            // Get the width of the existing "Try harder." text and the extra text
             const mainTextWidth = mainText.offsetWidth;
-            
-            // Move the period based on the width of the main text
-            const offset = mainTextWidth * 0.02; // Adjust this factor for more/less spacing
-            
+            const extraTextWidth = extraText.offsetWidth;
+
+            // Calculate how much the period should move to create space for ", Victoria"
+            const offset = extraTextWidth; // We want the period to move by the width of ", Victoria"
+
+            // Set the period's new position based on calculated offset
             period.style.transform = `translateX(${offset}px)`;
-            
+
             // Fade in the new text
             extraText.style.opacity = "1";
             extraText.style.transform = "translateX(0)";
@@ -118,7 +127,7 @@
         // Ensure DOM is loaded before running the script
         document.addEventListener("DOMContentLoaded", () => {
             setInterval(updateBackgroundColor, 2000); // Change background every 2 seconds
-            setTimeout(addExtraText, 1000); // Add text after 1 second
+            setTimeout(addExtraText, 1500); // Add text after 1 second
             updateBackgroundColor(); // Initialize background
         });
     </script>
