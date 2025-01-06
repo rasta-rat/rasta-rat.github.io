@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>You Really Thought?</title>
+    <title>Try Harder, Victoria.</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@
             font-weight: bold;
             margin-bottom: 20px;
             display: inline-block;
-            position: relative;
+            /* position: relative; */
             /* white-space: nowrap; */
         }
         #period {
@@ -100,12 +100,19 @@
         function addExtraText() {
             const extraText = document.getElementById("extra-text");
             const period = document.getElementById("period");
+            const mainText = document.getElementById("main-text");
 
-            // Slide the period over to make space for ", Victoria"
-            period.style.transform = "translateX(100px)";
+            // Calculate the width of the "Try harder." text
+            const mainTextWidth = mainText.offsetWidth;
+            
+            // Move the period based on the width of the main text
+            const offset = mainTextWidth * 0.02; // Adjust this factor for more/less spacing
+            
+            period.style.transform = `translateX(${offset}px)`;
             
             // Fade in the new text
             extraText.style.opacity = "1";
+            extraText.style.transform = "translateX(0)";
         }
 
         // Ensure DOM is loaded before running the script
