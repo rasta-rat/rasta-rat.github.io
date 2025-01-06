@@ -41,6 +41,11 @@
             transform: translateX(0); /* Starts invisible but does not displace layout */
             transition: opacity 1s, transform 1s;
         }
+        #victoria {
+            font-weight: bolder; /* Make Victoria extra bold */
+            font-size: 1.2em; /* Slightly increase font size for emphasis */
+            color: #ff4081; /* Make "Victoria" stand out with a custom color */
+        }
         p {
             font-size: 24px;
             font-style: italic;
@@ -69,7 +74,7 @@
 </head>
 <body>
     <h1 id="main-text">
-        You really thought I would give you the answer that easily? Try harder<span id="period">.</span><span id="extra-text">, Victoria</span>
+        You really thought I would give you the answer that easily? Try harder<span id="period">.</span><span id="extra-text">, <span id="victoria">Victoria</span></span>
     </h1>
     <p>P.S. You are a rat.</p>
     <img src="image.png" alt="An accompanying image">
